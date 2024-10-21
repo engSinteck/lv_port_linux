@@ -19,6 +19,7 @@ static void lv_linux_init_input_pointer(lv_display_t *disp)
     // Use /dev/input/by-id/my-mouse-or-touchscreen or /dev/input/eventX
     const char *input_device = getenv_default("LV_LINUX_EVDEV_POINTER_DEVICE", "/dev/input/by-id/my-mouse-or-touchscreen");
     lv_indev_t *touch = lv_evdev_create(LV_INDEV_TYPE_POINTER, input_device); 
+	lv_evdev_set_calibration(touch, 400, 0, 0, 1280);
     lv_indev_set_display(touch, disp);
 
     // Disable this if you want no cursor
@@ -34,6 +35,13 @@ static void lv_linux_disp_init(void)
 {
     const char *device = getenv_default("LV_LINUX_FBDEV_DEVICE", "/dev/fb0");
     lv_display_t * disp = lv_linux_fbdev_create();
+	
+	lv_display_set_resolution(disp, 400, 1280);
+    lv_display_set_physical_resolution(disp, 400, 1280);
+    lv_display_set_rotation(disp, LV_DISPLAY_ROTATION_270);
+    lv_display_set_antialiasing(disp, true);
+    lv_display_set_color_format(NULL, LV_COLOR_FORMAT_ARGB8888);
+    lv_linux_fbdev_set_force_refresh(NULL, 1);
     
     #if LV_USE_EVDEV
     lv_linux_init_input_pointer(disp);
