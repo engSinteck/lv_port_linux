@@ -17,9 +17,9 @@ static void lv_linux_init_input_pointer(lv_display_t *disp)
     // Enables a pointer (touchscreen/mouse) input device
     // Use 'evtest' to find the correct input device. /dev/input/by-id/ is recommeded if possible
     // Use /dev/input/by-id/my-mouse-or-touchscreen or /dev/input/eventX
-    const char *input_device = getenv_default("LV_LINUX_EVDEV_POINTER_DEVICE", "/dev/input/by-id/my-mouse-or-touchscreen");
+    const char *input_device = getenv_default("LV_LINUX_EVDEV_POINTER_DEVICE", "/dev/input/event3");
     lv_indev_t *touch = lv_evdev_create(LV_INDEV_TYPE_POINTER, input_device); 
-	lv_evdev_set_calibration(touch, 400, 0, 0, 1280);
+    lv_evdev_set_calibration(touch, 400, 0, 0, 1280);
     lv_indev_set_display(touch, disp);
 
     // Disable this if you want no cursor
@@ -36,7 +36,7 @@ static void lv_linux_disp_init(void)
     const char *device = getenv_default("LV_LINUX_FBDEV_DEVICE", "/dev/fb0");
     lv_display_t * disp = lv_linux_fbdev_create();
 	
-	lv_display_set_resolution(disp, 400, 1280);
+    lv_display_set_resolution(disp, 400, 1280);
     lv_display_set_physical_resolution(disp, 400, 1280);
     lv_display_set_rotation(disp, LV_DISPLAY_ROTATION_270);
     lv_display_set_antialiasing(disp, true);
@@ -82,7 +82,7 @@ int main(void)
 
     /*Create a Demo*/
     lv_demo_widgets();
-    lv_demo_widgets_start_slideshow();
+    //lv_demo_widgets_start_slideshow();
 
     /*Handle LVGL tasks*/
     while(1) {

@@ -10,7 +10,7 @@ WARNINGS		:= -Wall -Wshadow -Wundef -Wmissing-prototypes -Wno-discarded-qualifie
 					-Wsizeof-pointer-memaccess -Wno-format-nonliteral -Wno-cast-qual -Wunreachable-code -Wno-switch-default -Wreturn-type -Wmultichar -Wformat-security \
 					-Wno-ignored-qualifiers -Wno-error=pedantic -Wno-sign-compare -Wno-error=missing-prototypes -Wdouble-promotion -Wclobbered -Wdeprecated -Wempty-body \
 					-Wshift-negative-value -Wstack-usage=2048 -Wno-unused-value -std=gnu99
-CFLAGS 			?= -O3 -g0 -I/usr/include/libdrm -I$(LVGL_DIR)/ $(WARNINGS)
+CFLAGS 			?= -O2 -g0 -I/usr/include/libdrm -I$(LVGL_DIR)/ $(WARNINGS)
 LDFLAGS 		?= -lm -ldrm
 BIN 			= main
 BUILD_DIR 		= ./build
